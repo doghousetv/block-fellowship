@@ -3,6 +3,14 @@
 import { useEffect, useState } from "react"
 import { Download, Music, Github, Linkedin, Twitter, Mail, ExternalLink, Play } from "lucide-react"
 
+const sectionLabels: Record<string, string> = {
+  about: "About",
+  projects: "Projects",
+  opensource: "Open Source",
+  djwork: "DJ Work",
+  contact: "Contact",
+}
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about")
 
@@ -38,11 +46,7 @@ export default function Home() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              {item.charAt(0).toUpperCase() +
-                item
-                  .slice(1)
-                  .replace(/([A-Z])/g, " $1")
-                  .trim()}
+              {sectionLabels[item]}
             </button>
           ))}
         </div>
