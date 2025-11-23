@@ -28,6 +28,15 @@ export default function Home() {
     setActiveSection(sectionId)
   }
 
+  const downloadResume = () => {
+    const link = document.createElement("a")
+    link.href = "/george-resume.pdf"
+    link.download = "George_Arubi_Resume.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <main className="w-full bg-background text-foreground overflow-hidden">
       {/* Navigation */}
@@ -105,14 +114,14 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative">
-        <div className="absolute top-1/4 right-0 w-1 h-1/2 bg-gradient-to-b from-border/30 via-border/50 to-transparent"></div>
+        <div className="absolute top-1/4 right-0 w-1 h-1/2 bg-linear-to-b from-border/30 via-border/50 to-transparent"></div>
         {/* Geometric corner accent */}
         <div className="absolute bottom-0 right-24 w-64 h-64 border border-border/20 rounded-tl-full opacity-30"></div>
 
         <div className="max-w-5xl w-full relative z-10">
           <div className="mb-20">
             <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-4">Projects</h3>
-            <p className="text-muted-foreground font-light">Selected work that defines my journey</p>
+            <p className="text-muted-foreground font-light">Selected work that helped define my journey</p>
           </div>
 
           <div className="space-y-16">
@@ -120,7 +129,7 @@ export default function Home() {
             <div className="group">
               {/* Image/video placeholder for projects */}
               <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-br from-border/40 via-transparent to-transparent"></div>
                 <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
                   <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
                     <Play className="w-5 h-5" />
@@ -160,7 +169,7 @@ export default function Home() {
             {/* Patchbay */}
             <div className="group">
               <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-br from-border/40 via-transparent to-transparent"></div>
                 <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
                   <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
                     <Play className="w-5 h-5" />
@@ -195,7 +204,7 @@ export default function Home() {
             {/* Rollout */}
             <div className="group">
               <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-br from-border/40 via-transparent to-transparent"></div>
                 <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
                   <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
                     <Play className="w-5 h-5" />
@@ -226,7 +235,7 @@ export default function Home() {
             {/* Silence Please */}
             <div className="group">
               <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-br from-border/40 via-transparent to-transparent"></div>
                 <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
                   <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
                     <Play className="w-5 h-5" />
@@ -261,18 +270,18 @@ export default function Home() {
       <section id="opensource" className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative">
         {/* Geometric circle accents */}
         <div className="absolute top-1/3 left-0 w-96 h-96 border border-border/20 rounded-full opacity-40"></div>
-        <div className="absolute bottom-0 left-1/2 w-1 h-1/2 bg-gradient-to-t from-border/30 via-border/50 to-transparent"></div>
+        <div className="absolute bottom-0 left-1/2 w-1 h-1/2 bg-linear-to-t from-border/30 via-border/50 to-transparent"></div>
 
         <div className="max-w-5xl w-full relative z-10">
           <div className="mb-20">
             <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-4">Open Source</h3>
-            <p className="text-muted-foreground font-light">Building tools and communities for music technology</p>
+            <p className="text-muted-foreground font-light">Building tools and communities for music</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Everyone's Radio */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-border/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-border/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative p-8 border border-border group-hover:border-border/70 transition-colors rounded-lg">
                 <div className="flex items-center gap-3 mb-4">
                   <Music className="w-6 h-6 text-foreground/60" />
@@ -290,7 +299,7 @@ export default function Home() {
 
             {/* Oroko Radio */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-border/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-border/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative p-8 border border-border group-hover:border-border/70 transition-colors rounded-lg">
                 <div className="flex items-center gap-3 mb-4">
                   <Music className="w-6 h-6 text-foreground/60" />
@@ -347,7 +356,7 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative">
         {/* Replaced orange gradient with subtle border gradient */}
-        <div className="absolute inset-0 bg-gradient-radial from-border/10 via-transparent to-transparent opacity-50"></div>
+        <div className="absolute inset-0 bg-linear-radial from-border/10 via-transparent to-transparent opacity-50"></div>
 
         <div className="max-w-5xl w-full relative z-10">
           <div className="mb-20">
@@ -360,10 +369,10 @@ export default function Home() {
             <div className="group">
               <p className="text-xs text-muted-foreground font-light tracking-widest mb-4 uppercase">Email</p>
               <a
-                href="mailto:george@example.com"
-                className="text-xl font-light hover:text-foreground transition-colors group-hover:translate-x-2 transition-transform inline-block"
+                href="mailto:george@patchbay.xyz"
+                className="text-xl font-light hover:text-foreground transition-all group-hover:translate-x-2 inline-block"
               >
-                george@example.com
+                george@patchbay.xyz
               </a>
             </div>
 
@@ -371,12 +380,12 @@ export default function Home() {
             <div className="group">
               <p className="text-xs text-muted-foreground font-light tracking-widest mb-4 uppercase">GitHub</p>
               <a
-                href="https://github.com"
+                href="https://github.com/doghousetv/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl font-light hover:text-foreground transition-colors group-hover:translate-x-2 transition-transform inline-block flex items-center gap-2"
+                className="text-xl font-light hover:text-foreground transition-all group-hover:translate-x-2 flex items-center gap-2"
               >
-                @georgearubi <ExternalLink className="w-4 h-4" />
+                @doghousetv <ExternalLink className="w-4 h-4" />
               </a>
             </div>
 
@@ -384,10 +393,10 @@ export default function Home() {
             <div className="group">
               <p className="text-xs text-muted-foreground font-light tracking-widest mb-4 uppercase">LinkedIn</p>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/george-arubi/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl font-light hover:text-foreground transition-colors group-hover:translate-x-2 transition-transform inline-block flex items-center gap-2"
+                className="text-xl font-light hover:text-foreground transition-all group-hover:translate-x-2 flex items-center gap-2"
               >
                 George Arubi <ExternalLink className="w-4 h-4" />
               </a>
@@ -405,7 +414,7 @@ export default function Home() {
               <Twitter className="w-5 h-5" />
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/doghousetv/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
@@ -413,7 +422,7 @@ export default function Home() {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/george-arubi/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
@@ -421,7 +430,7 @@ export default function Home() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:george@example.com"
+              href="mailto:george@patchbay.xyz"
               className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
             >
               <Mail className="w-5 h-5" />
@@ -431,14 +440,13 @@ export default function Home() {
           {/* Resume Download */}
           <div className="mt-16 pt-12 border-t border-border/50">
             <p className="text-sm text-muted-foreground font-light mb-4">Download my resume</p>
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center gap-3 px-6 py-3 border border-border bg-border/10 hover:bg-border/20 text-foreground text-sm font-light tracking-wide transition-all rounded-lg"
+            <button
+              onClick={downloadResume}
+              className="inline-flex items-center gap-3 px-6 py-3 border border-border bg-border/10 hover:bg-border/20 text-foreground text-sm font-light tracking-wide transition-all rounded-lg cursor-pointer"
             >
               <Download className="w-4 h-4" />
-              George_Arubi_Resume.pdf
-            </a>
+              George Resume.pdf
+            </button>
           </div>
         </div>
       </section>
