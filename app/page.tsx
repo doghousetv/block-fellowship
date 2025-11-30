@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Download, Music, Github, Linkedin, Twitter, Mail, ExternalLink, Play } from "lucide-react"
+import { useState } from "react"
+import { Download, Music, Github, Linkedin, Mail, ExternalLink, Play } from "lucide-react"
 
 const sectionLabels: Record<string, string> = {
   about: "About",
@@ -14,14 +14,6 @@ const sectionLabels: Record<string, string> = {
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about")
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Set mouse position state
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     element?.scrollIntoView({ behavior: "smooth" })
@@ -31,7 +23,7 @@ export default function Home() {
   const downloadResume = () => {
     const link = document.createElement("a")
     link.href = "/george-resume.pdf"
-    link.download = "George_Arubi_Resume.pdf"
+    link.download = "george-resume.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -405,14 +397,6 @@ export default function Home() {
 
           {/* Social Links */}
           <div className="flex gap-6 pt-12 border-t border-border/50">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
             <a
               href="https://github.com/doghousetv/"
               target="_blank"
