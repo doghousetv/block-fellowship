@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ArrowUpRight, Mail, Play, Radio } from "lucide-react"
+import { ArrowUpRight, Play, Radio } from "lucide-react"
 
 const projects = [
   {
@@ -73,7 +73,7 @@ export default function Home() {
     <main className="site-shell">
       <nav className="site-nav">
         <button className="brand-mark" onClick={() => scrollToSection("about")} aria-label="Back to top">
-          GA<span>.</span>
+          George Arubi<span>.</span>
         </button>
         <div className="nav-links" aria-label="Primary navigation">
           {["about", "projects", "opensource", "djwork", "contact"].map((item) => (
@@ -82,7 +82,6 @@ export default function Home() {
             </button>
           ))}
         </div>
-        <span className="nav-status"><i /> Available for select work</span>
       </nav>
 
       <section id="about" className="hero section-pad">
@@ -104,10 +103,10 @@ export default function Home() {
 
       <section id="opensource" className="community section-pad"><div className="community-intro"><p className="eyebrow">02 / Open source & community</p><h2>Building in public. Building with people.</h2><p>I believe the best technology ecosystems are built through collaboration, shared knowledge, and tools that give communities more agency.</p></div><div className="community-grid"><article><div className="community-icon"><Radio size={19} /></div><p className="project-kicker">Community / 001</p><h3>Everyone&apos;s Radio</h3><p>Co-founded an open-source music-tech community bringing together 16 collaborators across design and engineering. The project grew from a shared interest in the infrastructure, ideas, and creative possibilities shaping the future of music.</p><a href="https://github.com/everyonesradio" target="_blank" rel="noreferrer">Explore the project <ArrowUpRight size={16} /></a></article><article><div className="community-icon"><Radio size={19} /></div><p className="project-kicker">Community / 002</p><h3>Oroko Radio</h3><p>An Accra-based internet radio station centering music, conversation, and culture from across Africa and its diaspora. As a resident DJ and open-source contributor, I&apos;ve built tools for DJs and improved internal workflows to support station operations.</p><a href="https://oroko.live" target="_blank" rel="noreferrer">Visit Oroko Radio <ArrowUpRight size={16} /></a></article></div></section>
 
-      <section id="djwork" className="dj-section section-pad"><div><p className="eyebrow">03 / Beyond the code</p><h2>DOGHOUSE</h2></div><div className="dj-content"><div className="record-art"><div className="record"><Play size={18} fill="currentColor" /></div><p>LISTEN / MOVE / REPEAT</p></div><div><p className="large-copy">Music is both my creative practice and a lens through which I understand technology.</p><p>As DOGHOUSE, I explore House, GQOM, Afrobeats, Rap, and drum-heavy rhythms across the African diaspora. My approach is rooted in Nigerian musical perspectives, with a curiosity for the connections between sounds, scenes, and cultures.</p><p>My work behind the decks informs how I build: listen closely, understand the context, experiment with intention, and create experiences that bring people together.</p><a className="button button-light" href="#contact">Listen to my sets <ArrowUpRight size={16} /></a></div></div></section>
+      <section id="djwork" className="dj-section section-pad"><div className="dj-heading"><p className="eyebrow">03 / Beyond the code</p><h2>DOGHOUSE</h2></div><div className="dj-content"><div className="record-art"><div className="record"><Play size={18} fill="currentColor" /></div><p>LISTEN / MOVE / REPEAT</p></div><div><p className="large-copy">Music is both my creative practice and a lens through which I understand technology.</p><p>As DOGHOUSE, I explore House, GQOM, Afrobeats, Rap, and drum-heavy rhythms across the African diaspora. My approach is rooted in Nigerian musical perspectives, with a curiosity for the connections between sounds, scenes, and cultures.</p><p>My work behind the decks informs how I build: listen closely, understand the context, experiment with intention, and create experiences that bring people together.</p><a className="button button-light" href="#contact">Listen to my sets <ArrowUpRight size={16} /></a></div></div></section>
 
       <section id="contact" className="contact section-pad"><p className="eyebrow">04 / Get in touch</p><h2>Have an idea<br /><em>worth building?</em></h2><p>I&apos;m interested in ambitious products, thoughtful collaborations, and opportunities to build technology that makes a meaningful difference—especially across music, AI, and creative industries.</p><div className="contact-links"><a href="mailto:arubigeorge0@gmail.com">Email me <ArrowUpRight size={18} /></a><a href="https://github.com/doghousetv" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={18} /></a><a href="https://linkedin.com/in/george-arubi" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={18} /></a></div></section>
-      <footer><span>Made with intention · Everywhere</span></footer>
+      <footer><span>© 2026 George Arubi</span><span>Made with intention · Everywhere</span></footer>
     </main>
   )
 }
