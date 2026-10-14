@@ -89,7 +89,7 @@ export default function Home() {
           <p className="eyebrow">Software Engineer · Product Builder · DJ</p>
           <h1>Building technology for <em>music, culture,</em> and community.</h1>
           <p className="hero-intro">I&apos;m a software engineer and product builder working at the intersection of technology, creativity, and culture. I turn ideas into products—from early-stage prototypes and AI-powered systems to thoughtful interfaces and reliable software.</p>
-          <div className="hero-actions"><button className="button button-dark" onClick={() => scrollToSection("projects")}>Explore my work <ArrowUpRight size={16} /></button><button className="text-link" onClick={() => scrollToSection("contact")}>Get in touch <span>↗</span></button></div>
+          <div className="hero-actions"><button className="button button-dark" onClick={() => scrollToSection("projects")}>Explore my work <ArrowUpRight size={16} /></button><button className="text-link" onClick={() => scrollToSection("contact")}>Get in touch <ArrowUpRight size={16} /></button></div>
         </div>
         <div className="hero-art" aria-label="Abstract graphic representing sound and systems">
           <div className="art-orbit orbit-one" /><div className="art-orbit orbit-two" /><div className="art-orbit orbit-three" /><div className="art-core" /><span className="art-label">CREATE / CONNECT / DISCOVER</span>
