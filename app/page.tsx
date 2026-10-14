@@ -1,451 +1,109 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Download, Music, Github, Linkedin, Twitter, Mail, ExternalLink, Play } from "lucide-react"
+import { ArrowUpRight, Mail, Play, Radio } from "lucide-react"
+
+const projects = [
+  {
+    number: "01",
+    name: "Feeture",
+    title: "Turning collaboration into a growth engine for artists.",
+    description:
+      "A marketplace connecting artists and teams for features, remixes, co-writes, and session work—using data to inform collaboration fees, predict listener growth, and recommend artist matches.",
+    detail:
+      "As Head of Product, I lead the artist-facing app, backend platform, and intelligence layer, spanning collaboration workflows, payments, and predictive models validated against real-world outcomes.",
+    tags: ["Product Leadership", "Applied ML", "Full-Stack Engineering"],
+    accent: "coral",
+  },
+  {
+    number: "02",
+    name: "Patchbay",
+    title: "Building better infrastructure for the music industry.",
+    description:
+      "Music teams spend too much time managing fragmented workflows across deals, catalogs, releases, contracts, and payments. Patchbay brings these moving parts into one workspace.",
+    detail:
+      "I contributed across product design, frontend and backend engineering, system architecture, and AI-driven product experiences—helping turn complex music-industry workflows into a more cohesive way of working.",
+    tags: ["Full-Stack Engineering", "Product Design", "Systems Architecture"],
+    accent: "blue",
+  },
+  {
+    number: "03",
+    name: "Rollout",
+    title: "Helping artists build sustainable businesses.",
+    description:
+      "Artists need more than a place to release music. They need the tools and infrastructure to grow their businesses.",
+    detail:
+      "As a founding engineer, I built products that helped artists and their teams operate more effectively, including an AI-powered task recommendation system combining streaming and industry data.",
+    tags: ["Founding Engineering", "AI Integration", "API Design"],
+    accent: "gold",
+  },
+  {
+    number: "04",
+    name: "Silence Please",
+    title: "Creating space for deeper listening.",
+    description:
+      "An exploration of how intentional listening experiences can bring people closer to music and one another.",
+    detail:
+      "Through event experiences and supporting digital tools, the project looks beyond passive music consumption toward more intimate, participatory ways of discovering and sharing music.",
+    tags: ["Experience Design", "Music Culture", "Community"],
+    accent: "ink",
+  },
+]
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about")
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Set mouse position state
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    const sections = ["about", "projects", "opensource", "djwork", "contact"]
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && setActiveSection(entry.target.id)),
+      { rootMargin: "-35% 0px -55%" },
+    )
+    sections.forEach((id) => document.getElementById(id) && observer.observe(document.getElementById(id)!))
+    return () => observer.disconnect()
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    element?.scrollIntoView({ behavior: "smooth" })
-    setActiveSection(sectionId)
-  }
+  const scrollToSection = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
 
   return (
-    <main className="w-full bg-background text-foreground overflow-hidden">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full h-16 flex items-center px-8 md:px-16 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
-        <div className="flex-1">
-          <h1 className="text-xl font-light tracking-tight">George Arubi</h1>
-        </div>
-        <div className="flex gap-8 md:gap-12 text-sm font-light tracking-wide">
+    <main className="site-shell">
+      <nav className="site-nav">
+        <button className="brand-mark" onClick={() => scrollToSection("about")} aria-label="Back to top">
+          GA<span>.</span>
+        </button>
+        <div className="nav-links" aria-label="Primary navigation">
           {["about", "projects", "opensource", "djwork", "contact"].map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(item)}
-              className={`transition-all duration-300 ${
-                activeSection === item
-                  ? "text-foreground border-b border-foreground/50"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {item.charAt(0).toUpperCase() +
-                item
-                  .slice(1)
-                  .replace(/([A-Z])/g, " $1")
-                  .trim()}
+            <button key={item} onClick={() => scrollToSection(item)} className={activeSection === item ? "active" : ""}>
+              {item === "djwork" ? "DJ / Selector" : item === "opensource" ? "Community" : item}
             </button>
           ))}
         </div>
+        <span className="nav-status"><i /> Available for select work</span>
       </nav>
 
-      {/* Hero Section */}
-      <section
-        id="about"
-        className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 pt-16 relative overflow-hidden"
-      >
-        {/* Geometric background elements */}
-        <div className="absolute top-20 right-10 w-72 h-72 border border-border/30 rounded-full animate-pulse"></div>
-        <div
-          className="absolute bottom-20 left-10 w-96 h-96 border border-border/20 rounded-full animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 right-1/4 w-2 h-2 bg-border rounded-full animate-ping"
-          style={{ animationDuration: "3s" }}
-        ></div>
-
-        <div className="max-w-4xl w-full relative z-10">
-          <div className="space-y-8">
-            <div>
-              <p className="text-muted-foreground text-sm font-light tracking-widest mb-4">FULL STACK ENGINEER</p>
-              <h2 className="text-5xl md:text-7xl font-light tracking-tight mb-6 text-balance">
-                Building at the intersection of{" "}
-                <span className="text-foreground font-light border-b border-border/50 pb-1">AI, music</span>, and
-                community.
-              </h2>
-            </div>
-
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              I rapidly prototype with AI tools, contribute to open source projects, and help music-tech startups move
-              faster. Currently a fullstack engineer at <span className="text-foreground font-medium">Patchbay</span> —
-              an agentic AI operating system for music management teams.
-            </p>
-
-            <div className="flex gap-4 pt-8">
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="px-8 py-3 bg-foreground text-background text-sm font-light tracking-wide hover:bg-foreground/90 transition-colors"
-              >
-                View Work
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="px-8 py-3 border border-border text-sm font-light tracking-wide hover:bg-border/10 transition-colors"
-              >
-                Get In Touch
-              </button>
-            </div>
-          </div>
+      <section id="about" className="hero section-pad">
+        <div className="hero-copy">
+          <p className="eyebrow">Software Engineer · Product Builder · DJ</p>
+          <h1>Building technology for <em>music, culture,</em> and community.</h1>
+          <p className="hero-intro">I&apos;m a software engineer and product builder working at the intersection of technology, creativity, and culture. I turn ideas into products—from early-stage prototypes and AI-powered systems to thoughtful interfaces and reliable software.</p>
+          <div className="hero-actions"><button className="button button-dark" onClick={() => scrollToSection("projects")}>Explore my work <ArrowUpRight size={16} /></button><button className="text-link" onClick={() => scrollToSection("contact")}>Get in touch <span>↗</span></button></div>
+        </div>
+        <div className="hero-art" aria-label="Abstract graphic representing sound and systems">
+          <div className="art-orbit orbit-one" /><div className="art-orbit orbit-two" /><div className="art-orbit orbit-three" /><div className="art-core" /><span className="art-label">CREATE / CONNECT / DISCOVER</span>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative">
-        <div className="absolute top-1/4 right-0 w-1 h-1/2 bg-gradient-to-b from-border/30 via-border/50 to-transparent"></div>
-        {/* Geometric corner accent */}
-        <div className="absolute bottom-0 right-24 w-64 h-64 border border-border/20 rounded-tl-full opacity-30"></div>
-
-        <div className="max-w-5xl w-full relative z-10">
-          <div className="mb-20">
-            <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-4">Projects</h3>
-            <p className="text-muted-foreground font-light">Selected work that defines my journey</p>
-          </div>
-
-          <div className="space-y-16">
-            {/* Algorhythm - Featured Project */}
-            <div className="group">
-              {/* Image/video placeholder for projects */}
-              <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
-                <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
-                  <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
-                    <Play className="w-5 h-5" />
-                  </div>
-                  <p className="text-sm font-light">Project Preview</p>
-                </div>
-              </div>
-
-              <div className="border-l-2 border-border pl-8 py-6 hover:border-foreground transition-colors">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h4 className="text-2xl font-light mb-2 group-hover:text-foreground/90 transition-colors">
-                      Algorhythm
-                    </h4>
-                    <p className="text-muted-foreground text-sm">AI-powered music cover art recognition engine</p>
-                  </div>
-                  <span className="px-3 py-1 text-xs border border-border/50 rounded-full text-muted-foreground font-light">
-                    Featured
-                  </span>
-                </div>
-                <p className="text-foreground/80 leading-relaxed mb-4">
-                  Think reverse image search for vinyl records. I built a working prototype using AI and I'm currently
-                  training the image model to improve its accuracy. The idea came while vinyl shopping—turning IRL music
-                  discovery into an online moment where I can "collect" albums found in the wild. It's like Shazam for
-                  music cover art.
-                </p>
-                <div className="flex gap-3 text-xs text-muted-foreground font-light">
-                  <span>AI/ML</span>
-                  <span>•</span>
-                  <span>Computer Vision</span>
-                  <span>•</span>
-                  <span>Product</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Patchbay */}
-            <div className="group">
-              <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
-                <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
-                  <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
-                    <Play className="w-5 h-5" />
-                  </div>
-                  <p className="text-sm font-light">Project Preview</p>
-                </div>
-              </div>
-
-              <div className="border-l-2 border-border pl-8 py-6 hover:border-foreground transition-colors">
-                <div>
-                  <h4 className="text-2xl font-light mb-2 group-hover:text-foreground/90 transition-colors">
-                    Patchbay
-                  </h4>
-                  <p className="text-muted-foreground text-sm mb-4">Music team OS for industry professionals</p>
-                </div>
-                <p className="text-foreground/80 leading-relaxed mb-4">
-                  A music team operating system (operating system) for industry professionals. I developed the UI/UX,
-                  defined the system architecture, and built AI-driven recommendation systems. This is where I currently
-                  work as a fullstack engineer, pushing the boundaries of what's possible in music management
-                  technology.
-                </p>
-                <div className="flex gap-3 text-xs text-muted-foreground font-light">
-                  <span>TypeScript</span>
-                  <span>•</span>
-                  <span>Python</span>
-                  <span>•</span>
-                  <span>Systems Design</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Rollout */}
-            <div className="group">
-              <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
-                <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
-                  <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
-                    <Play className="w-5 h-5" />
-                  </div>
-                  <p className="text-sm font-light">Project Preview</p>
-                </div>
-              </div>
-
-              <div className="border-l-2 border-border pl-8 py-6 hover:border-foreground transition-colors">
-                <div>
-                  <h4 className="text-2xl font-light mb-2 group-hover:text-foreground/90 transition-colors">Rollout</h4>
-                  <p className="text-muted-foreground text-sm mb-4">Label-focused task management platform</p>
-                </div>
-                <p className="text-foreground/80 leading-relaxed mb-4">
-                  A task management platform for record labels and artist managers. I led the development of an AI task
-                  recommender that integrates Spotify and Chartmetric metadata to prioritize tasks intelligently.
-                </p>
-                <div className="flex gap-3 text-xs text-muted-foreground font-light">
-                  <span>AI Integration</span>
-                  <span>•</span>
-                  <span>API Design</span>
-                  <span>•</span>
-                  <span>Full Stack</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Silence Please */}
-            <div className="group">
-              <div className="mb-6 relative overflow-hidden rounded-lg bg-border/20 aspect-video flex items-center justify-center border border-border/30 hover:border-border/50 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-border/40 via-transparent to-transparent"></div>
-                <div className="flex flex-col items-center gap-3 text-muted-foreground relative z-10">
-                  <div className="w-12 h-12 border border-border/50 rounded-full flex items-center justify-center">
-                    <Play className="w-5 h-5" />
-                  </div>
-                  <p className="text-sm font-light">Project Preview</p>
-                </div>
-              </div>
-
-              <div className="border-l-2 border-border pl-8 py-6 hover:border-foreground transition-colors">
-                <div>
-                  <h4 className="text-2xl font-light mb-2 group-hover:text-foreground/90 transition-colors">
-                    Silence Please
-                  </h4>
-                  <p className="text-muted-foreground text-sm mb-4">Intimate listening event platform</p>
-                </div>
-                <p className="text-foreground/80 leading-relaxed mb-4">
-                  An experimental product creating spaces for deep listening and community-building around music. This
-                  project explores the intersection of technology and intimate sonic experiences.
-                </p>
-                <div className="flex gap-3 text-xs text-muted-foreground font-light">
-                  <span>Community</span>
-                  <span>•</span>
-                  <span>Experience Design</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section id="projects" className="projects section-pad">
+        <div className="section-heading"><div><p className="eyebrow">01 / Selected work</p><h2>Products with a point of view.</h2></div><p>A collection of products, experiments, and tools exploring what&apos;s possible when technology meets music and culture.</p></div>
+        <div className="project-list">{projects.map((project) => <article className={`project-card accent-${project.accent}`} key={project.name}><div className="project-index">{project.number}</div><div className="project-visual"><div className="visual-grid" /><span>{project.name}</span><ArrowUpRight size={20} /></div><div className="project-content"><p className="project-kicker">{project.name}</p><h3>{project.title}</h3><p>{project.description}</p><p className="project-detail">{project.detail}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
       </section>
 
-      {/* Open Source Section */}
-      <section id="opensource" className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative">
-        {/* Geometric circle accents */}
-        <div className="absolute top-1/3 left-0 w-96 h-96 border border-border/20 rounded-full opacity-40"></div>
-        <div className="absolute bottom-0 left-1/2 w-1 h-1/2 bg-gradient-to-t from-border/30 via-border/50 to-transparent"></div>
+      <section id="opensource" className="community section-pad"><div className="community-intro"><p className="eyebrow">02 / Open source & community</p><h2>Building in public. Building with people.</h2><p>I believe the best technology ecosystems are built through collaboration, shared knowledge, and tools that give communities more agency.</p></div><div className="community-grid"><article><div className="community-icon"><Radio size={19} /></div><p className="project-kicker">Community / 001</p><h3>Everyone&apos;s Radio</h3><p>Co-founded an open-source music-tech community bringing together 16 collaborators across design and engineering. The project grew from a shared interest in the infrastructure, ideas, and creative possibilities shaping the future of music.</p><a href="#contact">Explore the project <ArrowUpRight size={16} /></a></article><article><div className="community-icon"><Radio size={19} /></div><p className="project-kicker">Community / 002</p><h3>Oroko Radio</h3><p>An Accra-based internet radio station centering music, conversation, and culture from across Africa and its diaspora. As a resident DJ and open-source contributor, I&apos;ve built tools for DJs and improved internal workflows to support station operations.</p><a href="#contact">Visit Oroko Radio <ArrowUpRight size={16} /></a></article></div></section>
 
-        <div className="max-w-5xl w-full relative z-10">
-          <div className="mb-20">
-            <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-4">Open Source</h3>
-            <p className="text-muted-foreground font-light">Building tools and communities for music technology</p>
-          </div>
+      <section id="djwork" className="dj-section section-pad"><div><p className="eyebrow">03 / Beyond the code</p><h2>DOGHOUSE <span>— DJ & Selector</span></h2></div><div className="dj-content"><div className="record-art"><div className="record"><Play size={18} fill="currentColor" /></div><p>LISTEN / MOVE / REPEAT</p></div><div><p className="large-copy">Music is both my creative practice and a lens through which I understand technology.</p><p>As DOGHOUSE, I explore House, GQOM, Afrobeats, Rap, and drum-heavy rhythms across the African diaspora. My approach is rooted in Nigerian musical perspectives, with a curiosity for the connections between sounds, scenes, and cultures.</p><p>My work behind the decks informs how I build: listen closely, understand the context, experiment with intention, and create experiences that bring people together.</p><a className="button button-light" href="#contact">Listen to my sets <ArrowUpRight size={16} /></a></div></div></section>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Everyone's Radio */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-border/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative p-8 border border-border group-hover:border-border/70 transition-colors rounded-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <Music className="w-6 h-6 text-foreground/60" />
-                  <h4 className="text-xl font-light">Everyone's Radio</h4>
-                </div>
-                <p className="text-foreground/80 text-sm leading-relaxed mb-6">
-                  Co-founded an open-source music-tech community with 16 collaborators across design and engineering.
-                </p>
-                <div className="flex items-center gap-2 text-foreground/70 text-sm font-light hover:gap-3 hover:text-foreground transition-all">
-                  <span>View on Notion</span>
-                  <ExternalLink className="w-4 h-4" />
-                </div>
-              </div>
-            </div>
-
-            {/* Oroko Radio */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-border/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative p-8 border border-border group-hover:border-border/70 transition-colors rounded-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <Music className="w-6 h-6 text-foreground/60" />
-                  <h4 className="text-xl font-light">Oroko Radio</h4>
-                </div>
-                <p className="text-foreground/80 text-sm leading-relaxed mb-6">
-                  Resident DJ and open-source contributor for this Accra-based internet radio station. I've built custom
-                  tools for DJs and improved internal workflows to support station operations.
-                </p>
-                <div className="flex items-center gap-2 text-foreground/70 text-sm font-light hover:gap-3 hover:text-foreground transition-all">
-                  <span>Visit Station</span>
-                  <ExternalLink className="w-4 h-4" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DJ Work Section */}
-      <section
-        id="djwork"
-        className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative overflow-hidden"
-      >
-        {/* Animated geometric circle accent */}
-        <div
-          className="absolute top-1/4 left-1/4 w-96 h-96 border border-border/25 rounded-full animate-pulse"
-          style={{ animationDuration: "4s" }}
-        ></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 border-2 border-dashed border-border/15 rounded-full opacity-40"></div>
-
-        <div className="max-w-5xl w-full relative z-10">
-          <div className="mb-20">
-            <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-4">DJ Work</h3>
-            <p className="text-muted-foreground font-light">Where music fuels technical creativity</p>
-          </div>
-
-          <div className="prose-invert max-w-2xl">
-            <p className="text-lg leading-relaxed text-foreground/90 mb-6">
-              As a resident DJ at <span className="text-foreground font-medium">Oroko Radio</span>, I channel my love
-              for sonic storytelling into curated musical journeys. Music isn't just entertainment for me—it's a source
-              of inspiration that fuels my creativity in tech.
-            </p>
-            <p className="text-lg leading-relaxed text-foreground/80">
-              Whether I'm behind the turntables or the keyboard, the art of mixing and improvisation inspires me to
-              build technology that brings people together and amplifies creative expression. The same principles apply:
-              listening deeply, understanding context, and orchestrating elements to create something greater than the
-              sum of its parts.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center px-8 md:px-16 lg:px-24 py-32 relative">
-        {/* Replaced orange gradient with subtle border gradient */}
-        <div className="absolute inset-0 bg-gradient-radial from-border/10 via-transparent to-transparent opacity-50"></div>
-
-        <div className="max-w-5xl w-full relative z-10">
-          <div className="mb-20">
-            <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-4">Get In Touch</h3>
-            <p className="text-muted-foreground font-light">Let's build something together</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-12 mb-16">
-            {/* Email */}
-            <div className="group">
-              <p className="text-xs text-muted-foreground font-light tracking-widest mb-4 uppercase">Email</p>
-              <a
-                href="mailto:george@example.com"
-                className="text-xl font-light hover:text-foreground transition-colors group-hover:translate-x-2 transition-transform inline-block"
-              >
-                george@example.com
-              </a>
-            </div>
-
-            {/* GitHub */}
-            <div className="group">
-              <p className="text-xs text-muted-foreground font-light tracking-widest mb-4 uppercase">GitHub</p>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl font-light hover:text-foreground transition-colors group-hover:translate-x-2 transition-transform inline-block flex items-center gap-2"
-              >
-                @georgearubi <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* LinkedIn */}
-            <div className="group">
-              <p className="text-xs text-muted-foreground font-light tracking-widest mb-4 uppercase">LinkedIn</p>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl font-light hover:text-foreground transition-colors group-hover:translate-x-2 transition-transform inline-block flex items-center gap-2"
-              >
-                George Arubi <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex gap-6 pt-12 border-t border-border/50">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:george@example.com"
-              className="p-3 border border-border hover:border-foreground/50 text-muted-foreground hover:text-foreground transition-all rounded-lg"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-
-          {/* Resume Download */}
-          <div className="mt-16 pt-12 border-t border-border/50">
-            <p className="text-sm text-muted-foreground font-light mb-4">Download my resume</p>
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center gap-3 px-6 py-3 border border-border bg-border/10 hover:bg-border/20 text-foreground text-sm font-light tracking-wide transition-all rounded-lg"
-            >
-              <Download className="w-4 h-4" />
-              George_Arubi_Resume.pdf
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border/50 py-8 px-8 md:px-16 lg:px-24">
-        <div className="flex justify-between items-center text-xs text-muted-foreground font-light">
-          <p>© 2025 George Arubi. All rights reserved.</p>
-          <p>Crafted with attention to detail</p>
-        </div>
-      </footer>
+      <section id="contact" className="contact section-pad"><p className="eyebrow">04 / Get in touch</p><h2>Have an idea<br /><em>worth building?</em></h2><p>I&apos;m interested in ambitious products, thoughtful collaborations, and opportunities to build technology that makes a meaningful difference—especially across music, AI, and creative industries.</p><div className="contact-links"><a href="mailto:george@example.com">Email me <ArrowUpRight size={18} /></a><a href="https://github.com" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={18} /></a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={18} /></a></div></section>
+      <footer><span>© 2026 George Arubi</span><span>Made with intention / Accra · Everywhere</span></footer>
     </main>
   )
 }

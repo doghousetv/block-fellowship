@@ -8,9 +8,9 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "George Arubi – Full Stack Engineer & Music Tech Builder",
+  title: "George Arubi — Software Engineer · Product Builder · DJ",
   description:
-    "Full-stack software engineer building at the intersection of AI, music, and community. Explore projects in music-tech, open-source contributions, and AI-driven systems.",
+    "George Arubi builds technology for music, culture, and community across product, engineering, open source, and DJing.",
   generator: "v0.app",
   icons: {
     icon: [
